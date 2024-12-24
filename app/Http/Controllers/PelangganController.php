@@ -11,7 +11,9 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        //
+        $data['pelanggan'] = \App\Models\Pelanggan::paginate(3); 
+        $data['judul'] = 'Data-data pelanggan'; 
+        return view('pelanggan_index', $data); 
     }
 
     /**
@@ -19,7 +21,8 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        //
+        $data['list_sp']=['Motor','Mobil'];
+        return view('pelanggan_create',$data);
     }
 
     /**

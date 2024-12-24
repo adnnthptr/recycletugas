@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\PelangganController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('manager', ManagerController::class);
 Route::get('manager/laporan/cetak', [ManagerController::class, 'laporan']);
+
+Route::resource('pelanggan', PelangganController::class);
+Route::get('pelanggan/laporan/cetak', [PelangganController::class, 'laporan']);

@@ -41,8 +41,8 @@
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false">Data Bengkel</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('Pelanggan',[]) }}">Data Pelanggan</a></li>
-                                <li><a class="dropdown-item" href="{{ url('Pelanggan/create', []) }}">Tambah Pelanggan</a></li>
+                                <li><a class="dropdown-item" href="{{ url('pelanggan',[]) }}">Data Pelanggan</a></li>
+                                <li><a class="dropdown-item" href="{{ url('pelanggan/create', []) }}">Tambah Pelanggan</a></li>
 
                                 <hr class="dropdown-divider">
                         </li>
@@ -58,7 +58,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ url('manager/laporan/cetak', []) }}">Laporan Manager</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="{{ url('pelanggan/laporan/cetak', []) }}">Laporan Pelanggan</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                    </div>
