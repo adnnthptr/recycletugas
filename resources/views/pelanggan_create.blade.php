@@ -5,35 +5,35 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Tambah Data Manager
+                    Tambah Data Pelanggan
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('manager.store') }}" method="POST">
+                    <form action="{{ route('pelanggan.store') }}" method="POST">
 
                         @csrf
 
                         <div class="form-group">
-                            <label for="kode_manager">Kode Manager</label>
-                            <input id="kode_manager" class="form-control" type="text" name="kode_manager"
-                                value="{{ old('kode_manager') }}">
-                            <span class="text-danger">{{ $errors->first('kode_manager') }}</span>
+                            <label for="kode_pelanggan">Kode Pelanggan</label>
+                            <input id="kode_pelanggan" class="form-control" type="text" name="kode_pelanggan"
+                                value="{{ old('kode_pelanggan') }}">
+                            <span class="text-danger">{{ $errors->first('kode_pelanggan') }}</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="nama_manager">Nama Manager</label>
-                            <input id="nama_manager" class="form-control" type="text" name="nama_manager"
-                                value="{{ old('nama_manager') }}">
-                            <span class="text-danger">{{ $errors->first('nama_manager') }}</span>
+                            <label for="nama_pelanggan">Nama Pelanggan</label>
+                            <input id="nama_pelanggan" class="form-control" type="text" name="nama_pelanggan"
+                                value="{{ old('nama_pelanggan') }}">
+                            <span class="text-danger">{{ $errors->first('nama_pelanggan') }}</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="tugas_manager">Tugas Manager</label>
-                            <select id="tugas_manager" class="form-control" name="tugas_manager">
+                            <label for="kendaraan">Kendaraan</label>
+                            <select id="kendaraaan" class="form-control" name="kendaraan">
                                 @foreach ($list_sp as $a)
-                                <option value="{{ $a }}" @selected($a == old('tugas_manager'))>{{ $a }}</option>
+                                <option value="{{ $a }}" @selected($a == old('kendaraaan'))>{{ $a }}</option>
                                 @endforeach
                             </select>
-                            <span class="text-danger">{{ $errors->first('tugas_manager') }}</span>
+                            <span class="text-danger">{{ $errors->first('kendaraaan') }}</span>
                         </div>
 
                         <div class="form-group">

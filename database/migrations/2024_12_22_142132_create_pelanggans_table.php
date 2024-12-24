@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_pelanggan', 15);
             $table->string('nama_pelanggan', 30);
+            $table->string('kendaraan', 30);
             $table->string('no_hp', 30);
             $table->string('alamat', 30);
             $table->timestamps();
