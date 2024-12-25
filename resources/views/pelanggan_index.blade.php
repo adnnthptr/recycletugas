@@ -26,7 +26,7 @@
                             <td>{{ $a->id }}</td>
                             <td>{{ $a->kode_pelanggan }}</td>
                             <td>{{ $a->nama_pelanggan }}</td>
-                            <td>{{ $a->Kendaraan }}</td>
+                            <td>{{ $a->kendaraan }}</td>
                             <td>{{ $a->no_hp }}</td>     
                             <td>{{ $a->alamat }}</td>
                             <td>
