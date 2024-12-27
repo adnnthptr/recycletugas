@@ -35,37 +35,34 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false">Data Bengkel</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('pelanggan',[]) }}">Data Pelanggan</a></li>
+                                <li><a class="dropdown-item" href="{{ url('pelanggan', []) }}">Data Pelanggan</a></li>
                                 <li><a class="dropdown-item" href="{{ url('pelanggan/create', []) }}">Tambah Pelanggan</a></li>
-
-                                <hr class="dropdown-divider">
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url('mekanik', []) }}">Data Mekanik</a></li>
+                                <li><a class="dropdown-item" href="{{ url('mekanik/create', []) }}">Tambah Mekanik</a></li>
+                                <li><a class="dropdown-item" href="{{ url('manager', []) }}">Data Manager</a></li>
+                                <li><a class="dropdown-item" href="{{ url('manager/create', []) }}">Tambah Manager</a></li>
+                            </ul>
                         </li>
-                        <li><a class="dropdown-item" href="{{ url('mekanik',[]) }}">Data Mekanik</a></li>
-                        <li><a class="dropdown-item" href="#">Tambah Mekanik</a></li>
-                        <li><a class="dropdown-item" href="{{ url('manager',[]) }}">Data Manager</a></li>
-                        <li><a class="dropdown-item" href="{{ url('manager/create', []) }}">Tambah Manager</a></li>
-                    </ul>
-                    </li>
-                    <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     Laporan
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('manager/laporan/cetak', []) }}">Laporan Manager</a></li>
-                        <li><a class="dropdown-item" href="{{ url('pelanggan/laporan/cetak', []) }}">Laporan Pelanggan</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                   </div>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                    @endauth
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Laporan
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('manager/laporan/cetak') }}">Laporan Manager</a></li>
+                                <li><a class="dropdown-item" href="{{ url('mekanik/laporan/cetak') }}">Laporan Mekanik</a></li>
+                                <li><a class="dropdown-item" href="{{ url('pelanggan/laporan/cetak') }}">Laporan Pelanggan</a></li>
+                            </ul>
+                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

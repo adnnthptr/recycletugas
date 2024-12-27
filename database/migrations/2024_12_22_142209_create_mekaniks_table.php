@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_mekanik', 30);
             $table->string('bidang_mekanik', 30);
             $table->string('no_hp', 30);
-            $table->timestamps();
+            $table->string('jenis_masalah_kendaraan', 30);
         });
     }
 

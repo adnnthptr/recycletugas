@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\MekanikController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,6 @@ Route::get('manager/laporan/cetak', [ManagerController::class, 'laporan']);
 
 Route::resource('pelanggan', PelangganController::class);
 Route::get('pelanggan/laporan/cetak', [PelangganController::class, 'laporan']);
+
+Route::resource('mekanik', MekanikController::class);
+Route::get('mekanik/laporan/cetak', [MekanikController::class, 'laporan']);
