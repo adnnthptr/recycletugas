@@ -3,6 +3,7 @@
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\MekanikController;
+use App\Http\Controllers\AdministrasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,6 @@ Route::get('pelanggan/laporan/cetak', [PelangganController::class, 'laporan']);
 
 Route::resource('mekanik', MekanikController::class);
 Route::get('mekanik/laporan/cetak', [MekanikController::class, 'laporan']);
+
+Route::resource('administrasi', AdministrasiController::class);
+Route::get('administrasi/laporan/cetak', [AdministrasiController::class, 'laporan']);

@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Administrasi extends Model
 {
     use HasFactory;
+
+    protected $table = 'mekaniks';
+
+    protected $fillable = [
+        'kode_administrasi',             
+        'jenis_masalah_kendaraan',
+        'harga',
+        'metode_pembayaran',
+    ];
+
+    public $timestamps = false; 
 }
+

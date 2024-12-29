@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('administrasis', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_pembayaran', 15);
+            $table->string('jenis_masalah kendaraan', 30);
+            $table->string('harga_servis', 30);
+            $table->string('metode_pembayaran', 30);
             $table->timestamps();
         });
     }
