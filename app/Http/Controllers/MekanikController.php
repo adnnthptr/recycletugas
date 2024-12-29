@@ -16,7 +16,7 @@ class MekanikController extends Controller
 
     public function index()
     {
-        $data['mekanik'] = $this->mekanik->paginate(3);
+        $data['mekanik'] = $this->mekanik->paginate(3); 
         $data['judul'] = 'Data-data mekanik';
         return view('mekanik_index', $data);
     }
@@ -27,6 +27,7 @@ class MekanikController extends Controller
         return view('mekanik_create', $data);
     }
 
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -37,9 +38,19 @@ class MekanikController extends Controller
             'jenis_masalah_kendaraan' => 'required',
         ]);
 
-        return back()->with('pesan', 'Data sudah Disimpan');
+        
+        $this->mekanik->create([
+            'kode_mekanik' => $request->kode_mekanik,
+            'nama_mekanik' => $request->nama_mekanik,
+            'bidang_mekanik' => $request->bidang_mekanik,
+            'no_hp' => $request->no_hp,
+            'jenis_masalah_kendaraan' => $request->jenis_masalah_kendaraan,
+        ]);
+
+        return redirect()->route('mekanik.index')->with('pesan', 'Data sudah Disimpan');
     }
 
+    
     public function edit(string $id)
     {
         $data['mekanik'] = $this->mekanik->findOrFail($id);
@@ -47,6 +58,7 @@ class MekanikController extends Controller
         return view('mekanik_edit', $data);
     }
 
+    
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -63,12 +75,12 @@ class MekanikController extends Controller
         return redirect()->route('mekanik.index')->with('pesan', 'Data sudah Diupdate');
     }
 
+    
     public function destroy(string $id)
     {
         $mekanik = $this->mekanik->findOrFail($id);
 
-        // Contoh pengecekan relasi sebelum menghapus
-        if ($mekanik->relatedData()->exists()) { 
+        if (method_exists($mekanik, 'relatedData') && $mekanik->relatedData()->exists()) {
             return back()->with('error', 'Data ini memiliki relasi, tidak dapat dihapus.');
         }
 
@@ -76,6 +88,7 @@ class MekanikController extends Controller
         return redirect()->route('mekanik.index')->with('pesan', 'Data berhasil dihapus');
     }
 
+    
     public function laporan(Request $request)
     {
         $query = $this->mekanik->query();
