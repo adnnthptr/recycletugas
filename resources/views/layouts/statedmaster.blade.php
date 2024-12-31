@@ -1,6 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>@yield('title', 'My Website')</title>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">My Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Konten Dinamis -->
+    <main class="container mt-4">
+        @yield('content')
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light py-3">
+        <div class="container">
+            <p class="text-center mb-0">&copy; 2024 My Website. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
     <title>@yield('title', 'Default Title')</title> <!-- Dynamic title -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,30 +51,22 @@
     <meta name="author" content="Your Name or Company">
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Playfair+Display:400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/jquery-ui.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/aos.css">
-    <link rel="stylesheet" href="{{ asset('bebas') }}/css/style.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/aos.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/style.css">
 
     <!-- CSS Tambahan -->
     @stack('styles') <!-- Untuk stylesheet tambahan -->
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-    <!-- Header / Navbar -->
-    @include('partials.navbar') <!-- Buat partial untuk navigasi jika ada -->
-
-    <!-- Konten Dinamis -->
-    @yield('content') <!-- Tempat konten halaman -->
-
-    <!-- Footer -->
-    @include('partials.footer') <!-- Buat partial untuk footer jika ada -->  
   <div class="site-wrap">
 
     <div class="site-mobile-menu site-navbar-target">
@@ -710,20 +745,20 @@
 
   </div> <!-- .site-wrap -->
 
-  <script src="{{ asset('bebas') }}/js/jquery-3.3.1.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/jquery-ui.js"></script>
-    <script src="{{ asset('bebas') }}/js/popper.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/bootstrap.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/owl.carousel.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/jquery.stellar.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/jquery.countdown.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/bootstrap-datepicker.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/jquery.easing.1.3.js"></script>
-    <script src="{{ asset('bebas') }}/js/aos.js"></script>
-    <script src="{{ asset('bebas') }}/js/jquery.fancybox.min.js"></script>
-    <script src="{{ asset('bebas') }}/js/jquery.sticky.js"></script>
-    <script src="{{ asset('bebas') }}/js/main.js"></script>
+  <script src="{{ asset('statedmaster') }}/js/jquery-3.3.1.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/jquery-ui.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/popper.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/bootstrap.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/owl.carousel.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/jquery.stellar.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/jquery.countdown.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/jquery.easing.1.3.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/aos.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/jquery.fancybox.min.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/jquery.sticky.js"></script>
+    <script src="{{ asset('statedmaster') }}/js/main.js"></script>
 
     <!-- Script Tambahan -->
     @stack('scripts') <!-- Untuk script tambahan -->

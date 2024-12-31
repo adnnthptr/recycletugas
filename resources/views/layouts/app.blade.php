@@ -16,18 +16,31 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- Additional Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Playfair+Display:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/aos.css">
+    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/style.css">
+    @stack('styles') <!-- Untuk stylesheet tambahan -->
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <div id="app">
+        <!-- Header / Navbar -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -36,8 +49,7 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">Data Bengkel</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Data Bengkel</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('pelanggan', []) }}">Data Pelanggan</a></li>
                                 <li><a class="dropdown-item" href="{{ url('pelanggan/create', []) }}">Tambah Pelanggan</a></li>
@@ -49,8 +61,7 @@
                             </ul>
                         </li>
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Laporan
                             </button>
                             <ul class="dropdown-menu">
@@ -67,7 +78,6 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
@@ -82,8 +92,7 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -104,6 +113,7 @@
             </div>
         </nav>
 
+        <!-- Main Content -->
         <main class="py-4">
             @if (Session::has('pesan'))
             <div class="alert alert-primary" role="alert">
@@ -112,6 +122,11 @@
             @endif
             @yield('content')
         </main>
+
+        <!-- Footer -->
+        <footer class="footer bg-light text-center py-3">
+            <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All Rights Reserved.</p>
+        </footer>
     </div>
 </body>
 

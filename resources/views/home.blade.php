@@ -1,4 +1,5 @@
-@extends('auth.statedmaster') <!-- Pastikan menggunakan layout yang benar -->
+@extends('layouts.statedmaster')
+ <!-- Pastikan menggunakan layout yang benar -->
 
 @section('title', 'Halaman Home') <!-- Jika ingin mengubah title halaman -->
 

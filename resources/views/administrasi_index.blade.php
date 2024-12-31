@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.statedmaster')
+@section('isinya')
 <style>
     .harga-display {
         display: inline-block;
