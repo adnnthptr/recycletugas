@@ -25,6 +25,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Kode Administrasi</th>
+                                <th>Pelanggan</th>
+                                <th>Mekanik</th>
                                 <th>Jenis Masalah Kendaraan</th>
                                 <th>Harga</th>
                                 <th>Metode Pembayaran</th>
@@ -38,6 +40,8 @@
                                 <td>{{ $a->id }}</td>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $a->kode_administrasi }}</td>
+                                <td>{{ $a->pelanggan }}</td>
+                                <td>{{ $a->mekanik }}</td>
                                 <td>{{ $a->jenis_masalah kendaraan }}</td>
                                 <td>Rp. {{ number_format ($a->harga) }}</td> 
                                 <td>{{ $a->metode_pembayaran }}</td>

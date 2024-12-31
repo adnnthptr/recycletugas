@@ -21,6 +21,20 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="pelanggan">Pelanggan</label>
+                            <input id="pelanggan" class="form-cphpontrol" type="text" name="pelanggan"
+                                value="{{ old('pelanggan') }}">
+                            <span class="text-danger">{{ $errors->first('pelanggan') }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mekanik">Mekanik</label>
+                            <input id="mekanik" class="form-cphpontrol" type="text" name="mekanik"
+                                value="{{ old('mekanik') }}">
+                            <span class="text-danger">{{ $errors->first('mekanik') }}</span>
+                        </div>
+
+                        <div class="form-group">
                             <label for="jenis_masalah_kendaraan">Jenis Masalah Kendaraan</label>
                             <input id="jenis_masalah_kendaraan" class="form-control" type="text" name="jenis_masalah_kendaraan"
                                 value="{{ old('jenis_masalah_kendaraan') }}">

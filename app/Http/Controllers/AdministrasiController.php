@@ -21,6 +21,11 @@ class AdministrasiController extends Controller
      */
     public function create()
     {
+        $data['list_pelanggan'] = \App\Models\Pelanggan::selectRaw("id, concat(kode_pelanggan,'-', nama_pelanggan) as
+        tampil")->pluck('tampil', 'id');
+        $data['list_mekanik'] = \App\Models\Mekanik::selectRaw("id, concat(kode_mekanik,'-', nama_mekanik) as
+        tampil")->pluck('tampil', 'id');
+        return view('administrasi_create', $data);
         $data['list_sp']=['Motor','Mobil'];
         return view('administrasi_create',$data);
     }
@@ -32,6 +37,8 @@ class AdministrasiController extends Controller
 {
     $request->validate([
         'kode_pembayaran' => 'required|unique:administrators,kode_pelanggan',
+        'pelanggan' => 'required',
+        'mekanik' => 'required',
         'jenis_masalah kendaraan' => 'required',
         'harga' => 'required',
         'metode_pembayaran' => 'required',
@@ -39,6 +46,8 @@ class AdministrasiController extends Controller
 
     $administrasi = new \App\Models\Administrasi();
     $administrasi->kode_pembayaran = $request->kode_pembayaran;
+    $administrasi->pelanggan = $request->pelanggan;
+    $administrasi->mekanik = $request->mekanik;
     $administrasi->jenis_masalah_kendaraan = $request->jenis_masalah_kendaraan;
     $administrasi->harga = $request->harga;
     $administrasi->metode_pembayaran = $request->metode_pembayaran;
@@ -73,6 +82,8 @@ class AdministrasiController extends Controller
     {
         $request->validate([
             'kode_pembayaran' => 'required|unique:pelanggans,kode_pelanggan',
+            'pelanggan' => 'required',
+            'mekanik' => 'required',
             'jenis_masalah kendaraan' => 'required',
             'harga' => 'required',
             'metode_pembayaran' => 'required',
@@ -80,6 +91,8 @@ class AdministrasiController extends Controller
     
         $administrasi = new \App\Models\Administrasi();
         $administrasi->kode_pembayaran = $request->kode_pembayaran;
+        $administrasi->pelanggan = $request->pelanggan;
+        $administrasi->mekanik = $request->mekanik;
         $administrasi->jenis_masalahkendaraan = $request->jenis_masalahkendaraan;
         $administrasi->harga = $request->harga;
         $administrasi->metode_pembayaran = $request->metode_pembayaran;

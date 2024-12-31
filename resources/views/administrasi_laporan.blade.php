@@ -24,6 +24,8 @@
                         <tr>
                             <td>id</td>
                             <td>Kode Administrasi</td>
+                            <td>Pelanggan</td>
+                            <td>Mekanik</td>
                             <td>Jenis Masalah Kendaraan</td>
                             <td>Harga</td>
                             <td>Metode Pembayaran</td>
@@ -34,6 +36,8 @@
                         <tr>
                             <td>{{ $a->id }}</td>
                             <td>{{ $a->kode_administrasi }}</td>
+                            <td>{{ $a->pelanggan }}</td>
+                            <td>{{ $a->mekanik }}</td>
                             <td>{{ $a->jenis_maslah kendaraan }}</td>
                             <td>{{ $a->harga }}</td>
                             <td>{{ $a->metode_pembayaran }}</td>

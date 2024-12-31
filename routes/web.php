@@ -36,3 +36,7 @@ Route::get('mekanik/laporan/cetak', [MekanikController::class, 'laporan']);
 
 Route::resource('administrasi', AdministrasiController::class);
 Route::get('administrasi/laporan/cetak', [AdministrasiController::class, 'laporan']);
+
+Route::get('/', function () {
+    return view('home'); // Pastikan file home.blade.php ada
+});

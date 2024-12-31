@@ -12,7 +12,9 @@ class Administrasi extends Model
     protected $table = 'mekaniks';
 
     protected $fillable = [
-        'kode_administrasi',             
+        'kode_administrasi',
+        'pelanggan',
+        'mekanik',           
         'jenis_masalah_kendaraan',
         'harga',
         'metode_pembayaran',
