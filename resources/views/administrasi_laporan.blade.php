@@ -38,7 +38,7 @@
                             <td>{{ $a->kode_administrasi }}</td>
                             <td>{{ $a->pelanggan }}</td>
                             <td>{{ $a->mekanik }}</td>
-                            <td>{{ $a->jenis_maslah kendaraan }}</td>
+                            <td>{{ $a->jenis_masalah_kendaraan }}</td>
                             <td>{{ $a->harga }}</td>
                             <td>{{ $a->metode_pembayaran }}</td>
                         </tr>

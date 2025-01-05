@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 
 class PelangganController extends Controller
@@ -11,9 +12,9 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $data['pelanggan'] = \App\Models\Pelanggan::paginate(3); 
-        $data['judul'] = 'Data-data pelanggan'; 
-        return view('pelanggan_index', $data); 
+        $data['pelanggan'] = Pelanggan::paginate(3);
+        $data['judul'] = 'Data-data pelanggan';
+        return view('pelanggan_index', $data);
     }
 
     /**
@@ -21,41 +22,41 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        $data['list_sp']=['Motor','Mobil'];
-        return view('pelanggan_create',$data);
+        $data['list_sp'] = ['Motor', 'Mobil'];
+        return view('pelanggan_create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'kode_pelanggan' => 'required|unique:pelanggans,kode_pelanggan',
-        'nama_pelanggan' => 'required',
-        'kendaraan' => 'required',
-        'no_hp' => 'required',
-        'alamat' => 'required'
-    ]);
+    {
+        $request->validate([
+            'kode_pelanggan' => 'required|unique:pelanggans,kode_pelanggan',
+            'nama_pelanggan' => 'required',
+            'kendaraan' => 'required',
+            'no_hp' => 'required',
+            'alamat' => 'required'
+        ]);
 
-    $pelanggan = new \App\Models\Pelanggan();
-    $pelanggan->kode_pelanggan = $request->kode_pelanggan;
-    $pelanggan->nama_pelanggan = $request->nama_pelanggan;
-    $pelanggan->kendaraan = $request->kendaraan;
-    $pelanggan->no_hp = $request->no_hp;
-    $pelanggan->alamat = $request->alamat;
-    $pelanggan->save();
+        $pelanggan = new Pelanggan();
+        $pelanggan->kode_pelanggan = $request->kode_pelanggan;
+        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+        $pelanggan->kendaraan = $request->kendaraan;
+        $pelanggan->no_hp = $request->no_hp;
+        $pelanggan->alamat = $request->alamat;
+        $pelanggan->save();
 
-    return back()->with('pesan','Data sudah Disimpan');
-}
-
+        return back()->with('pesan', 'Data sudah Disimpan');
+    }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $pelanggan = Pelanggan::findOrFail($id);
+        return view('pelanggan_show', compact('pelanggan'));
     }
 
     /**
@@ -63,9 +64,9 @@ class PelangganController extends Controller
      */
     public function edit(string $id)
     {
-        $data['pelanggan']=\App\Models\Pelanggan::findOrFail($id);
-        $data['list_sp']=['Motor','Mobil'];
-        return view('pelanggan_edit',$data);
+        $data['pelanggan'] = Pelanggan::findOrFail($id);
+        $data['list_sp'] = ['Motor', 'Mobil'];
+        return view('pelanggan_edit', $data);
     }
 
     /**
@@ -74,20 +75,21 @@ class PelangganController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'kode_pelanggan' => 'required|unique:pelanggans,kode_pelanggan,'.$id,
+            'kode_pelanggan' => 'required|unique:pelanggans,kode_pelanggan,' . $id,
             'nama_pelanggan' => 'required',
             'kendaraan' => 'required',
             'no_hp' => 'required',
             'alamat' => 'required'
         ]);
-    
-        $pelanggan = \App\Models\Pelanggan::findOrFail($id);
+
+        $pelanggan = Pelanggan::findOrFail($id);
         $pelanggan->kode_pelanggan = $request->kode_pelanggan;
         $pelanggan->nama_pelanggan = $request->nama_pelanggan;
         $pelanggan->kendaraan = $request->kendaraan;
         $pelanggan->no_hp = $request->no_hp;
         $pelanggan->alamat = $request->alamat;
         $pelanggan->save();
+
         return redirect('/pelanggan')->with('pesan', 'Data sudah Diupdate');
     }
 
@@ -96,14 +98,28 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Cari data pelanggan berdasarkan ID
+            $pelanggan = Pelanggan::findOrFail($id);
+
+            // Hapus data pelanggan
+            $pelanggan->delete();
+
+            // Redirect ke halaman index dengan pesan sukses
+            return redirect()->route('pelanggan_index')->with('pesan', 'Data berhasil dihapus!');
+        } catch (\Exception $e) {
+            // Tangani error dan redirect dengan pesan error
+            return redirect()->route('pelanggan_index')->with('pesan', 'Terjadi kesalahan saat menghapus data!')->with('alert-type', 'danger');
+        }
     }
 
+    /**
+     * Generate laporan data pelanggan.
+     */
     public function laporan()
     {
-    $data['judul'] = 'Laporan Data Pelanggan';
-    $data['pelanggan'] = \App\Models\Pelanggan::all();
-    return view('pelanggan_laporan', $data);
+        $data['judul'] = 'Laporan Data Pelanggan';
+        $data['pelanggan'] = Pelanggan::all();
+        return view('pelanggan_laporan', $data);
     }
-
 }

@@ -1,5 +1,6 @@
-@extends('layouts.statedmaster')
-@section('isinya')
+@extends('layouts.app')
+@section('title', 'Data Mekanik')
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -35,8 +36,8 @@
                                 <td>{{ $a->no_hp }}</td>     
                                 <td>{{ $a->jenis_masalah_kendaraan }}</td>
                                 <td>
-                                  <a href="{{ route('mekanik.edit', $a->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                  <form action="{{ route('mekanik.destroy', $a->id) }}" method="post" class="d-inline"
+                                  <a href="{{ route('mekanik_edit', $a->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                  <form action="{{ route('mekanik_destroy', $a->id) }}" method="post" class="d-inline"
                                   onsubmit="return confirm('Apakah yakin ingin menghapus?')">
                                     @method('delete')
                                     @csrf

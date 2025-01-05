@@ -1,5 +1,6 @@
-@extends('layouts.statedmaster')
-@section('isinya')
+@extends('layouts.app')
+@section('title', 'Data Administrasi')
+@section('content')
 <style>
     .harga-display {
         display: inline-block;
@@ -42,7 +43,7 @@
                                 <td>{{ $a->kode_administrasi }}</td>
                                 <td>{{ $a->pelanggan }}</td>
                                 <td>{{ $a->mekanik }}</td>
-                                <td>{{ $a->jenis_masalah kendaraan }}</td>
+                                <td>{{ $a->jenis_masalah_kendaraan }}</td>
                                 <td>Rp. {{ number_format ($a->harga) }}</td> 
                                 <td>{{ $a->metode_pembayaran }}</td>
                                 <td>{{ date('d M Y' strtotime($a->tanggal)) }}</td>
@@ -50,8 +51,8 @@
                                     </span>
                                 </td>
                                 <td>
-                                  <a href="{{ route('administrasi.edit', $a->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                  <form action="{{ route('administrasi.destroy', $a->id) }}" method="post" class="d-inline"
+                                  <a href="{{ route('administrasi_edit', $a->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                  <form action="{{ route('administrasi_destroy', $a->id) }}" method="post" class="d-inline"
                                   onsubmit="return confirm('Apakah yakin ingin menghapus?')">
                                     @method('delete')
                                     @csrf

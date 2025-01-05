@@ -1,0 +1,6 @@
+/* resources/css/custom.css */
+
+body {
+    background: url('public/images/test1.png') no-repeat center center fixed;
+    background-size: cover;
+}

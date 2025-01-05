@@ -111,8 +111,8 @@ class AdministrasiController extends Controller
     public function laporan()
     {
     $data['judul'] = 'Laporan Data administrasi';
-    $data['administrator'] = \App\Models\Administrasi::all();
-    return view('administrator_laporan', $data);
+    $data['administrasi'] = \App\Models\Administrasi::all();
+    return view('administrasi_laporan', $data);
     }
 
 }

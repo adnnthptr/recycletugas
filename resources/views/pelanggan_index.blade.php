@@ -1,5 +1,6 @@
-@extends('layouts.statedmaster')
-@section('isinya')
+@extends('layouts.app')
+@section('title', 'Data Pelanggan')
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

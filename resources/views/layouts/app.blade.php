@@ -14,25 +14,19 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <!-- Vite Styles and Scripts -->
+    @vite(['resources/css/custom.css', 'resources/js/app.js'])
 
     <!-- Additional Styles -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Playfair+Display:400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('statedmaster') }}/fonts/icomoon/style.css">
     <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/jquery-ui.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/aos.css">
     <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/style.css">
-    @stack('styles') <!-- Untuk stylesheet tambahan -->
+    @stack('styles')
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body>
     <div id="app">
         <!-- Header / Navbar -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -40,7 +34,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -51,27 +45,22 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Data Bengkel</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('pelanggan', []) }}">Data Pelanggan</a></li>
-                                <li><a class="dropdown-item" href="{{ url('pelanggan/create', []) }}">Tambah Pelanggan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pelanggan_index') }}">Data Pelanggan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pelanggan_create') }}">Tambah Pelanggan</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ url('mekanik', []) }}">Data Mekanik</a></li>
-                                <li><a class="dropdown-item" href="{{ url('mekanik/create', []) }}">Tambah Mekanik</a></li>
-                                <li><a class="dropdown-item" href="{{ url('manager', []) }}">Data Manager</a></li>
-                                <li><a class="dropdown-item" href="{{ url('manager/create', []) }}">Tambah Manager</a></li>
+                                <li><a class="dropdown-item" href="{{ route('mekanik_index') }}">Data Mekanik</a></li>
+                                <li><a class="dropdown-item" href="{{ route('mekanik_create') }}">Tambah Mekanik</a></li>
+                                <li><a class="dropdown-item" href="{{ route('manager_index') }}">Data Manager</a></li>
+                                <li><a class="dropdown-item" href="{{ route('manager_create') }}">Tambah Manager</a></li>
                             </ul>
                         </li>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Laporan
-                            </button>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Laporan</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('manager/laporan/cetak') }}">Laporan Manager</a></li>
-                                <li><a class="dropdown-item" href="{{ url('mekanik/laporan/cetak') }}">Laporan Mekanik</a></li>
-                                <li><a class="dropdown-item" href="{{ url('pelanggan/laporan/cetak') }}">Laporan Pelanggan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('manager_laporan') }}">Laporan Manager</a></li>
+                                <li><a class="dropdown-item" href="{{ route('mekanik_laporan') }}">Laporan Mekanik</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pelanggan_laporan') }}">Laporan Pelanggan</a></li>
                             </ul>
-                        </div>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
                         @endauth
                     </ul>
@@ -92,16 +81,14 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -116,7 +103,7 @@
         <!-- Main Content -->
         <main class="py-4">
             @if (Session::has('pesan'))
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert-{{ Session::get('alert-type', 'primary') }}" role="alert">
                 {{ Session::get('pesan') }}
             </div>
             @endif
@@ -128,6 +115,9 @@
             <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All Rights Reserved.</p>
         </footer>
     </div>
+
+    <!-- Additional Scripts -->
+    @stack('scripts')
 </body>
 
 </html>

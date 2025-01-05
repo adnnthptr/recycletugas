@@ -16,10 +16,17 @@ class MekanikController extends Controller
 
     public function index()
     {
-        $data['mekanik'] = $this->mekanik->paginate(3); 
-        $data['judul'] = 'Data-data mekanik';
-        return view('mekanik_index', $data);
+        $data['mekanik'] = Mekanik::paginate(3); 
+        $data['judul'] = 'Data-data mekanik'; 
+        return view('mekanik_index', $data); 
     }
+    
+    public function show($id)
+    {
+    $mekanik = Mekanik::findOrFail($id);
+    return view('mekanik_show', compact('mekanik'));
+    }
+
 
     public function create()
     {
@@ -47,7 +54,7 @@ class MekanikController extends Controller
             'jenis_masalah_kendaraan' => $request->jenis_masalah_kendaraan,
         ]);
 
-        return redirect()->route('mekanik.index')->with('pesan', 'Data sudah Disimpan');
+        return redirect()->route('mekanik_index')->with('pesan', 'Data sudah Disimpan');
     }
 
     
@@ -72,7 +79,7 @@ class MekanikController extends Controller
         $mekanik = $this->mekanik->findOrFail($id);
         $mekanik->update($request->all());
 
-        return redirect()->route('mekanik.index')->with('pesan', 'Data sudah Diupdate');
+        return redirect()->route('mekanik_index')->with('pesan', 'Data sudah Diupdate');
     }
 
     
@@ -85,7 +92,7 @@ class MekanikController extends Controller
         }
 
         $mekanik->delete();
-        return redirect()->route('mekanik.index')->with('pesan', 'Data berhasil dihapus');
+        return redirect()->route('mekanik_index')->with('pesan', 'Data berhasil dihapus');
     }
 
     

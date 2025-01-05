@@ -102,7 +102,7 @@ class ManagerController extends Controller
         $manager->save();
     }
 
-    return redirect()->route('manager.index')->with('pesan', 'Data nomor HP telah dipindahkan ke tugas manager');
+    return redirect()->route('manager_index')->with('pesan', 'Data nomor HP telah dipindahkan ke tugas manager');
 }
 
 

@@ -1,5 +1,5 @@
-@extends('layouts.statedmaster')
-@section('isinya')
+@extends('layouts.app')
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,7 +8,7 @@
                     Tambah Data Manager
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('manager.store') }}" method="POST">
+                    <form action="{{ route('manager_store') }}" method="POST">
 
                         @csrf
 

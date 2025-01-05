@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <!-- Form menggunakan POST dengan method PUT -->
-                    <form action="{{ route('manager.update', $manager->id) }}" method="POST">
+                    <form action="{{ route('manager_update', $manager->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 

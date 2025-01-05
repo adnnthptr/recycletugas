@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('statedmaster/fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('statedmaster/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('statedmaster/css/style.css') }}">
     <title>@yield('title', 'My Website')</title>
 </head>
 <body>
@@ -30,15 +32,21 @@
 
     <!-- Konten Dinamis -->
     <main class="container mt-4">
-        @yield('content')
+        @yield('isinya') <!-- Bagian untuk konten -->
     </main>
 
     <!-- Footer -->
     <footer class="bg-light py-3">
         <div class="container">
-            <p class="text-center mb-0">&copy; 2024 My Website. All rights reserved.</p>
+            <p class="text-center mb-0">&copy; {{ date('Y') }} My Website. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="{{ asset('statedmaster/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('statedmaster/js/bootstrap.min.js') }}"></script>
+</body>
+</html>
 
 </body>
 </html>
@@ -81,32 +89,80 @@
     
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
-      <div class="container">
-        @if (Session::has('pesan'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ Session::get('pesan')}}
-            </div>
-        @endif
-        @yield('isinya')
-        <div class="row align-items-center">
-          
-          <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo m-0 p-0"><a href="index.html" class="mb-0">Stated.</a></h1>
-          </div>
+  <div class="container">
+    @if (Session::has('pesan'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ Session::get('pesan')}}
+        </div>
+    @endif
+    @yield('isinya')
+    <div class="row align-items-center">
+      
+      <div class="col-6 col-xl-2">
+        <h1 class="mb-0 site-logo m-0 p-0"><a href="index.html" class="mb-0">Stated.</a></h1>
+      </div>
 
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
+      <div class="col-12 col-md-10 d-none d-xl-block">
+      <nav class="site-navigation position-relative text-right" role="navigation">
+  <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+    <!-- Manager Dropdown -->
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" id="managerMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Manager
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="managerMenu">
+        <li><a href="{{ url('/manager/index') }}" class="dropdown-item">Tampil Data</a></li>
+        <li><a href="{{ url('/manager/create') }}" class="dropdown-item">Tambah Data</a></li>
+        <li><a href="{{ url('/manager/laporan') }}" class="dropdown-item">Laporan</a></li>
+      </ul>
+    </li>
 
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#home-section" class="nav-link">Home</a></li>
-                <li><a href="#properties-section" class="nav-link">Properties</a></li>
-                <li><a href="#agents-section" class="nav-link">Agents</a></li>
-                <li><a href="#about-section" class="nav-link">About</a></li>
-                <li><a href="#news-section" class="nav-link">News</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
-              </ul>
-            </nav>
-          </div>
+    <!-- Mekanik Dropdown -->
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" id="mekanikMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Mekanik
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="mekanikMenu">
+        <li><a href="{{ url('/mekanik/index') }}" class="dropdown-item">Tampil Data</a></li>
+        <li><a href="{{ url('/mekanik/create') }}" class="dropdown-item">Tambah Data</a></li>
+        <li><a href="{{ url('/mekanik/laporan') }}" class="dropdown-item">Laporan</a></li>
+      </ul>
+    </li>
+
+    <!-- Pelanggan Dropdown -->
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" id="pelangganMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Pelanggan
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="pelangganMenu">
+        <li><a href="{{ url('/pelanggan/index') }}" class="dropdown-item">Tampil Data</a></li>
+        <li><a href="{{ url('/pelanggan/create') }}" class="dropdown-item">Tambah Data</a></li>
+        <li><a href="{{ url('/pelanggan/laporan') }}" class="dropdown-item">Laporan</a></li>
+      </ul>
+    </li>
+
+    <!-- Administrasi Dropdown -->
+    <li class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" id="administrasiMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Administrasi
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="administrasiMenu">
+        <li><a href="{{ url('/administrasi/index') }}" class="dropdown-item">Tampil Data</a></li>
+        <li><a href="{{ url('/administrasi/create') }}" class="dropdown-item">Tambah Data</a></li>
+        <li><a href="{{ url('/administrasi/laporan') }}" class="dropdown-item">Laporan</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+        </nav>
+      </div>
+    </div>
+  </div>
+
+</header>
+
 
 
           <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
@@ -763,4 +819,5 @@
     <!-- Script Tambahan -->
     @stack('scripts') <!-- Untuk script tambahan -->
 </body>
+
 </html>

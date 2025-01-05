@@ -1,5 +1,5 @@
-@extends('layouts.statedmaster')
-@section('isinya')
+@extends('layouts.app')
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,7 +8,7 @@
                     Tambah Data Pelanggan
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('pelanggan.store') }}" method="POST">
+                    <form action="{{ route('pelanggan_store') }}" method="POST">
 
                         @csrf
 
