@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.statedmaster')
 @section('title', 'Data Administrasi')
 @section('content')
 <style>

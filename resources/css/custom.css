@@ -1,6 +1,20 @@
 /* resources/css/custom.css */
 
+/* resources/css/custom.css */
+
 body {
-    background: url('public/images/test1.png') no-repeat center center fixed;
-    background-size: cover;
+    background-color: #f7f9fc; /* Warna latar belakang */
+    background-image: url('/images/background.jpg'); /* Ubah path sesuai lokasi file gambar Anda */
+    background-size: cover; /* Sesuaikan agar gambar menutupi seluruh layar */
+    background-repeat: no-repeat; /* Hindari pengulangan gambar */
+    background-position: center; /* Posisikan gambar di tengah */
 }
+
+main {
+    background-color: #ffffff; /* Tambahkan warna background putih untuk konten utama */
+    border-radius: 15px; /* Efek rounded */
+    padding: 20px; /* Beri jarak di dalam konten */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+}
+
+

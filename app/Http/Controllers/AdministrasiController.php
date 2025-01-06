@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Administrasi;
+use App\Models\Pelanggan;
+use App\Models\Mekanik;
 
 class AdministrasiController extends Controller
 {
@@ -11,9 +14,9 @@ class AdministrasiController extends Controller
      */
     public function index()
     {
-        $data['administrasi'] = \App\Models\Administrasi::paginate(3); 
-        $data['judul'] = 'Data-data administrasi'; 
-        return view('administrasi_index', $data); 
+        $data['administrasi'] = Administrasi::paginate(3);
+        $data['judul'] = 'Data-data Administrasi';
+        return view('administrasi_index', $data);
     }
 
     /**
@@ -21,48 +24,37 @@ class AdministrasiController extends Controller
      */
     public function create()
     {
-        $data['list_pelanggan'] = \App\Models\Pelanggan::selectRaw("id, concat(kode_pelanggan,'-', nama_pelanggan) as
-        tampil")->pluck('tampil', 'id');
-        $data['list_mekanik'] = \App\Models\Mekanik::selectRaw("id, concat(kode_mekanik,'-', nama_mekanik) as
-        tampil")->pluck('tampil', 'id');
+        $data['list_pelanggan'] = Pelanggan::selectRaw("id, concat(kode_pelanggan, '-', nama_pelanggan) as tampil")
+            ->pluck('tampil', 'id');
+        $data['list_mekanik'] = Mekanik::selectRaw("id, concat(kode_mekanik, '-', nama_mekanik) as tampil")
+            ->pluck('tampil', 'id');
         return view('administrasi_create', $data);
-        $data['list_sp']=['Motor','Mobil'];
-        return view('administrasi_create',$data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'kode_pembayaran' => 'required|unique:administrators,kode_pelanggan',
-        'pelanggan' => 'required',
-        'mekanik' => 'required',
-        'jenis_masalah kendaraan' => 'required',
-        'harga' => 'required',
-        'metode_pembayaran' => 'required',
-    ]);
-
-    $administrasi = new \App\Models\Administrasi();
-    $administrasi->kode_pembayaran = $request->kode_pembayaran;
-    $administrasi->pelanggan = $request->pelanggan;
-    $administrasi->mekanik = $request->mekanik;
-    $administrasi->jenis_masalah_kendaraan = $request->jenis_masalah_kendaraan;
-    $administrasi->harga = $request->harga;
-    $administrasi->metode_pembayaran = $request->metode_pembayaran;
-    $administrasi->save();
-
-    return back()->with('pesan','Data sudah Disimpan');
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
     {
-        //
+        $request->validate([
+            'kode_pembayaran' => 'required|unique:administrasi,kode_pembayaran',
+            'pelanggan' => 'required',
+            'mekanik' => 'required',
+            'jenis_masalah_kendaraan' => 'required',
+            'harga' => 'required',
+            'metode_pembayaran' => 'required',
+        ]);
+
+        $administrasi = new Administrasi();
+        $administrasi->kode_pembayaran = $request->kode_pembayaran;
+        $administrasi->pelanggan_id = $request->pelanggan;
+        $administrasi->mekanik_id = $request->mekanik;
+        $administrasi->jenis_masalah_kendaraan = $request->jenis_masalah_kendaraan;
+        $administrasi->harga = $request->harga;
+        $administrasi->metode_pembayaran = $request->metode_pembayaran;
+        $administrasi->save();
+
+        return back()->with('pesan', 'Data sudah Disimpan');
     }
 
     /**
@@ -70,9 +62,12 @@ class AdministrasiController extends Controller
      */
     public function edit(string $id)
     {
-        $data['administrator']=\App\Models\Administrasi::findOrFail($id);
-        $data['list_sp']=['Motor','Mobil'];
-        return view('pelanggan_edit',$data);
+        $data['administrasi'] = Administrasi::findOrFail($id);
+        $data['list_pelanggan'] = Pelanggan::selectRaw("id, concat(kode_pelanggan, '-', nama_pelanggan) as tampil")
+            ->pluck('tampil', 'id');
+        $data['list_mekanik'] = Mekanik::selectRaw("id, concat(kode_mekanik, '-', nama_mekanik) as tampil")
+            ->pluck('tampil', 'id');
+        return view('administrasi_edit', $data);
     }
 
     /**
@@ -81,39 +76,33 @@ class AdministrasiController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'kode_pembayaran' => 'required|unique:pelanggans,kode_pelanggan',
+            'kode_pembayaran' => 'required|unique:administrasi,kode_pembayaran,' . $id,
             'pelanggan' => 'required',
             'mekanik' => 'required',
-            'jenis_masalah kendaraan' => 'required',
+            'jenis_masalah_kendaraan' => 'required',
             'harga' => 'required',
             'metode_pembayaran' => 'required',
         ]);
-    
-        $administrasi = new \App\Models\Administrasi();
+
+        $administrasi = Administrasi::findOrFail($id);
         $administrasi->kode_pembayaran = $request->kode_pembayaran;
-        $administrasi->pelanggan = $request->pelanggan;
-        $administrasi->mekanik = $request->mekanik;
-        $administrasi->jenis_masalahkendaraan = $request->jenis_masalahkendaraan;
+        $administrasi->pelanggan_id = $request->pelanggan;
+        $administrasi->mekanik_id = $request->mekanik;
+        $administrasi->jenis_masalah_kendaraan = $request->jenis_masalah_kendaraan;
         $administrasi->harga = $request->harga;
         $administrasi->metode_pembayaran = $request->metode_pembayaran;
-        $administrasi->save(); 
-        return redirect('/administrator')->with('pesan', 'Data sudah Diupdate');
+        $administrasi->save();
+
+        return redirect('/administrasi')->with('pesan', 'Data sudah Diupdate');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Generate a report for administrasi data.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
-
     public function laporan()
     {
-    $data['judul'] = 'Laporan Data administrasi';
-    $data['administrasi'] = \App\Models\Administrasi::all();
-    return view('administrasi_laporan', $data);
+        $data['judul'] = 'Laporan Data Administrasi';
+        $data['administrasi'] = Administrasi::all();
+        return view('administrasi_laporan', $data);
     }
-
 }
-

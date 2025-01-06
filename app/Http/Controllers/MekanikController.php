@@ -14,27 +14,28 @@ class MekanikController extends Controller
         $this->mekanik = $mekanik;
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $data['mekanik'] = Mekanik::paginate(3); 
-        $data['judul'] = 'Data-data mekanik'; 
+        $data['judul'] = 'Data-data Mekanik'; 
         return view('mekanik_index', $data); 
     }
-    
-    public function show($id)
-    {
-    $mekanik = Mekanik::findOrFail($id);
-    return view('mekanik_show', compact('mekanik'));
-    }
 
-
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         $data['list_sp'] = ['Motor', 'Mobil'];
         return view('mekanik_create', $data);
     }
 
-    
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -45,7 +46,6 @@ class MekanikController extends Controller
             'jenis_masalah_kendaraan' => 'required',
         ]);
 
-        
         $this->mekanik->create([
             'kode_mekanik' => $request->kode_mekanik,
             'nama_mekanik' => $request->nama_mekanik,
@@ -57,7 +57,9 @@ class MekanikController extends Controller
         return redirect()->route('mekanik_index')->with('pesan', 'Data sudah Disimpan');
     }
 
-    
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(string $id)
     {
         $data['mekanik'] = $this->mekanik->findOrFail($id);
@@ -65,7 +67,9 @@ class MekanikController extends Controller
         return view('mekanik_edit', $data);
     }
 
-    
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -82,7 +86,9 @@ class MekanikController extends Controller
         return redirect()->route('mekanik_index')->with('pesan', 'Data sudah Diupdate');
     }
 
-    
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
         $mekanik = $this->mekanik->findOrFail($id);
@@ -95,7 +101,9 @@ class MekanikController extends Controller
         return redirect()->route('mekanik_index')->with('pesan', 'Data berhasil dihapus');
     }
 
-    
+    /**
+     * Generate a report for mekanik data.
+     */
     public function laporan(Request $request)
     {
         $query = $this->mekanik->query();

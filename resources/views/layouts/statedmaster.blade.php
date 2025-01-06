@@ -3,6 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stated Master</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <header>
+        <h1>My Application</h1>
+        {{-- Tambahkan navigasi jika perlu --}}
+    </header>
+    <main>
+        @yield('content')
+    </main>
+    <footer>
+        <p>&copy; 2025 My Website</p>
+    </footer>
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('statedmaster/fonts/icomoon/style.css') }}">
     <link rel="stylesheet" href="{{ asset('statedmaster/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('statedmaster/css/style.css') }}">

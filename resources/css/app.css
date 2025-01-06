@@ -1,0 +1,23 @@
+/* Pastikan halaman mencakup seluruh tinggi layar */
+html, body {
+    height: 100%;
+    margin: 0; /* Hilangkan margin default */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Susun elemen secara vertikal */
+}
+
+/* Main content akan mengisi ruang yang tersedia */
+main {
+    flex: 1; /* Membuat konten utama fleksibel untuk mengisi ruang */
+}
+
+/* Gaya footer */
+footer {
+    text-align: center; /* Agar teks rata tengah */
+    padding: 10px 0;
+    background-color: #f8f9fa; /* Warna latar opsional */
+    border-top: 1px solid #ddd; /* Garis atas opsional */
+}

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.statedmaster')
 @section('title', 'Data Pelanggan')
 @section('content')
 <div class="container">
