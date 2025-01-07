@@ -1,4 +1,4 @@
-@extends('layouts.statedmaster')
+@extends('layouts.pestkit')
 @section('title', 'Data Manager')
 @section('content')
 <div class="container">

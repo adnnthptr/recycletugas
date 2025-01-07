@@ -103,22 +103,4 @@ class ManagerController extends Controller
         $data['manager'] = Manager::all(); 
         return view('manager_laporan', $data);
     }
-
-    /**
-     * Move phone number data to task column.
-     */
-    public function movePhoneToTask()
-    {
-        // Ambil semua data manager
-        $managers = Manager::all();
-
-        foreach ($managers as $manager) {
-            // Pindahkan data dari no_hp ke tugas_manager
-            $manager->tugas_manager = $manager->no_hp;
-            $manager->no_hp = null; // Kosongkan kolom no_hp
-            $manager->save();
-        }
-
-        return redirect()->route('manager_index')->with('pesan', 'Data nomor HP telah dipindahkan ke tugas manager');
-    }
 }

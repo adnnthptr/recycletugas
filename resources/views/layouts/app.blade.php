@@ -10,25 +10,15 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Vite Styles and Scripts -->
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- Additional Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Playfair+Display:400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/jquery-ui.css">
-    <link rel="stylesheet" href="{{ asset('statedmaster') }}/css/style.css">
     @stack('styles')
 </head>
 
 <body>
     <div id="app">
-        <!-- Header / Navbar -->
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -43,7 +33,7 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Data Bengkel</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data Bengkel</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('pelanggan_index') }}">Data Pelanggan</a></li>
                                 <li><a class="dropdown-item" href="{{ route('pelanggan_create') }}">Tambah Pelanggan</a></li>
@@ -55,7 +45,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Laporan</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Laporan</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('manager_laporan') }}">Laporan Manager</a></li>
                                 <li><a class="dropdown-item" href="{{ route('mekanik_laporan') }}">Laporan Mekanik</a></li>
@@ -86,7 +76,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -112,11 +102,13 @@
 
         <!-- Footer -->
         <footer class="footer bg-light text-center py-3">
-            <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All Rights Reserved.</p>
+            <div class="container">
+                <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All Rights Reserved.</p>
+            </div>
         </footer>
     </div>
 
-    <!-- Additional Scripts -->
+    <!-- Scripts -->
     @stack('scripts')
 </body>
 

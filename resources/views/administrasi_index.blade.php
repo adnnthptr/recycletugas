@@ -1,4 +1,4 @@
-@extends('layouts.statedmaster')
+@extends('layouts.pestkit')
 @section('title', 'Data Administrasi')
 @section('content')
 <style>

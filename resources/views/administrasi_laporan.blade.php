@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laporan Data Administrasi</title>
 
-    <!-- Scripts-->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
 
 <body>

@@ -14,8 +14,9 @@ class AdministrasiController extends Controller
      */
     public function index()
     {
+        // Menggunakan paginate untuk membatasi jumlah data yang ditampilkan
         $data['administrasi'] = Administrasi::paginate(3);
-        $data['judul'] = 'Data-data Administrasi';
+        $data['judul'] = 'Data Administrasi';
         return view('administrasi_index', $data);
     }
 
@@ -24,6 +25,7 @@ class AdministrasiController extends Controller
      */
     public function create()
     {
+        // Mengambil data pelanggan dan mekanik dengan menggunakan selectRaw
         $data['list_pelanggan'] = Pelanggan::selectRaw("id, concat(kode_pelanggan, '-', nama_pelanggan) as tampil")
             ->pluck('tampil', 'id');
         $data['list_mekanik'] = Mekanik::selectRaw("id, concat(kode_mekanik, '-', nama_mekanik) as tampil")
@@ -45,6 +47,7 @@ class AdministrasiController extends Controller
             'metode_pembayaran' => 'required',
         ]);
 
+        // Menyimpan administrasi baru
         $administrasi = new Administrasi();
         $administrasi->kode_pembayaran = $request->kode_pembayaran;
         $administrasi->pelanggan_id = $request->pelanggan;
@@ -54,6 +57,7 @@ class AdministrasiController extends Controller
         $administrasi->metode_pembayaran = $request->metode_pembayaran;
         $administrasi->save();
 
+        // Mengarahkan kembali dengan pesan sukses
         return back()->with('pesan', 'Data sudah Disimpan');
     }
 
@@ -62,6 +66,7 @@ class AdministrasiController extends Controller
      */
     public function edit(string $id)
     {
+        // Mengambil data administrasi yang ingin diedit
         $data['administrasi'] = Administrasi::findOrFail($id);
         $data['list_pelanggan'] = Pelanggan::selectRaw("id, concat(kode_pelanggan, '-', nama_pelanggan) as tampil")
             ->pluck('tampil', 'id');
@@ -75,6 +80,7 @@ class AdministrasiController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Validasi input sebelum update
         $request->validate([
             'kode_pembayaran' => 'required|unique:administrasi,kode_pembayaran,' . $id,
             'pelanggan' => 'required',
@@ -84,6 +90,7 @@ class AdministrasiController extends Controller
             'metode_pembayaran' => 'required',
         ]);
 
+        // Menemukan administrasi berdasarkan ID
         $administrasi = Administrasi::findOrFail($id);
         $administrasi->kode_pembayaran = $request->kode_pembayaran;
         $administrasi->pelanggan_id = $request->pelanggan;
@@ -93,7 +100,21 @@ class AdministrasiController extends Controller
         $administrasi->metode_pembayaran = $request->metode_pembayaran;
         $administrasi->save();
 
+        // Redirect dengan pesan sukses
         return redirect('/administrasi')->with('pesan', 'Data sudah Diupdate');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        // Menemukan administrasi berdasarkan ID dan menghapusnya
+        $administrasi = Administrasi::findOrFail($id);
+        $administrasi->delete();
+
+        // Mengarahkan kembali ke halaman administrasi dengan pesan sukses
+        return redirect()->route('administrasi_index')->with('pesan', 'Data sudah Dihapus');
     }
 
     /**
@@ -102,7 +123,7 @@ class AdministrasiController extends Controller
     public function laporan()
     {
         $data['judul'] = 'Laporan Data Administrasi';
-        $data['administrasi'] = Administrasi::all();
+        $data['administrasi'] = Administrasi::all();  // Mengambil semua data administrasi
         return view('administrasi_laporan', $data);
     }
 }
